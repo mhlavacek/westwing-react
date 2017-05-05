@@ -3,15 +3,16 @@ import Guid from 'guid'
 import ListItem from './components/ListItem'
 import Header from './components/Header'
 import Toolbar from './components/Toolbar'
+import Items from './components/Items'
 import './App.css';
 // import itemsStore from './stores/ItemsStore'
 
 // This is our "data source". In an advanced scenario, you could
 // get this from a data store of some sort (local storage, )
 let items = [
-  { id: Guid.raw(), text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
-  { id: Guid.raw(), text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
-  { id: Guid.raw(), text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" }
+  { id: Guid.raw(), type: "quote", text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
+  { id: Guid.raw(), type: "quote", text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
+  { id: Guid.raw(), type: "quote", text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" }
 ]
 
 let newItem = {text: '', person: '', date: new Date().toISOString().substring(0, 10)};
@@ -40,9 +41,7 @@ class App extends Component {
       <div className="App">
         <Header/>
         <Toolbar addText="new quote" addAction={this.onAddItem}/>
-        <ul className="item-list">
-          { this.state.items.map((item) => ListItem(item)) }
-        </ul>
+        <Items items={this.state.items}/>
       </div>
         );
     }
@@ -88,7 +87,7 @@ class App extends Component {
       mode: 'display',
       items: [
        ...this.state.items,
-       Object.assign(this.state.newItem, { id: Guid.raw() })
+       Object.assign(this.state.newItem, { id: Guid.raw(), type: 'quote' })
       ],
       newItem: newItem  // from let newItem = {...
     });
