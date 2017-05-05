@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Guid from 'guid'
 import ListItem from './components/ListItem'
 import Header from './components/Header'
+import Toolbar from './components/Toolbar'
 import './App.css';
 // import itemsStore from './stores/ItemsStore'
 
@@ -38,11 +39,7 @@ class App extends Component {
       return (
       <div className="App">
         <Header/>
-        <div className="toolbar">
-          <a className="add-item" onClick={this.onAddItem}>
-            new quote
-          </a>
-        </div>
+        <Toolbar addText="new quote" addAction={this.onAddItem}/>
         <ul className="item-list">
           { this.state.items.map((item) => ListItem(item)) }
         </ul>

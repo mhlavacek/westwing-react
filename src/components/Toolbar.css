@@ -1,0 +1,11 @@
+.toolbar {
+  text-align: right;
+  padding: 1rem;
+}
+
+.toolbar-item {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 1rem;
+  cursor: pointer;
+}
