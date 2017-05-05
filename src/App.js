@@ -28,6 +28,7 @@ class App extends Component {
     //})
     this.onAddItem = this.onAddItem.bind(this);
     this.onSubmitItem = this.onSubmitItem.bind(this);
+    this.onCancelItem = this.onCancelItem.bind(this);
   }
   render() {
     if(this.state.mode === 'display')
@@ -35,7 +36,8 @@ class App extends Component {
       return (
       <div className="App">
         <Header/>
-        <Toolbar addText="new quote" addAction={this.onAddItem}/>
+        <Toolbar addText="new quote" 
+                 addAction={this.onAddItem}/>
         <Items items={this.state.items}/>
       </div>
         );
@@ -44,7 +46,9 @@ class App extends Component {
       return (
         <div className="App">
           <Header/>
-          <AddItem type={this.state.newType} onAdded={this.onSubmitItem}/>
+          <AddItem type={this.state.newType} 
+                   onSubmit={this.onSubmitItem} 
+                   onCancel={this.onCancelItem}/>
         </div>
       );
     }
@@ -63,6 +67,10 @@ class App extends Component {
        Object.assign(item, { id: Guid.raw() })
       ]
     });
+  }
+
+  onCancelItem(){
+    this.setState({mode: 'display', newType: ''});
   }
 }
 

@@ -27,6 +27,7 @@ class AddItem extends Component {
             onChange={this.onTextChange}  required/>
 
         <button type="submit">Save</button>
+        <button type="button" onClick={this.props.onCancel}>Cancel</button>
       </form>
     </div>
     );
@@ -47,7 +48,7 @@ class AddItem extends Component {
   }
 
   onSubmit() {
-    this.props.onAdded(this.state.newItem);
+    this.props.onSubmit(this.state.newItem);
   }
 }
 
