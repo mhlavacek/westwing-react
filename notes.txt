@@ -1,0 +1,32 @@
+* One Time Install *
+install latest node
+install latest npm (comes for free with node)
+npm install -g create-react-app
+# All set!
+
+* Create a project
+create-react-app (path-to-folder) [from command line.  This creates your entire development pipeline. build, lint, etc.  Basically, all the bullshit boilerplate dependencies for "hello world"]
+#Docs: https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md
+
+* Running the server
+npm start (in that directory)
+
+* development
+index.js is responsible for rendering your App.js
+
+#import App from './App'; This runs "App.js".
+ - If you leave out an extension, it will assume .js.
+
+ * How to run a test
+ npm test (inside directory)
+  - Spits out results
+  - You can provide a specific file. If you don't, it will run all files that end with test.js by convention
+  - Looks inside "src" by default
+  - There is a plugin with vs code that can auto run all tests as soon as you save
+ - Look into how to create good tests and see what are good patterns
+
+ * Rendering
+  - this.state => lives on "Component" which is your data.  When you call "setState", it sets this property and then automatically calls "render" for you and only renders exactly what is needed.
+
+ * Debugging
+  - install a chrome extension for debugging react apps. "React Dev Tools"
