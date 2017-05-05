@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Guid from 'guid'
-import logo from './logo.svg';
 import ListItem from './components/ListItem'
+import Header from './components/Header'
 import './App.css';
 // import itemsStore from './stores/ItemsStore'
 
@@ -96,14 +96,6 @@ class App extends Component {
       newItem: newItem  // from let newItem = {...
     });
   }
-}
-
-function Header() {
-  return (
-  <div className="App-header">
-    <img src={logo} className="App-logo" alt="logo" />
-    <h2>Welcome to West Wing</h2>
-  </div>);
 }
 
 export default App;
