@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Guid from 'guid'
 import logo from './logo.svg';
 import './App.css';
 // import itemsStore from './stores/ItemsStore'
@@ -6,9 +7,9 @@ import './App.css';
 // This is our "data source". In an advanced scenario, you could
 // get this from a data store of some sort (local storage, )
 let items = [
-  { text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
-  { text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
-  { text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" }
+  { id: Guid.raw(), text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
+  { id: Guid.raw(), text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" },
+  { id: Guid.raw(), text: "You guys realize this is horseshit, right?", person: "Dom", date: "Apr 24 2017" }
 ]
 
 let newItem = {text: '', person: '', date: new Date().toISOString().substring(0, 10)};
@@ -34,7 +35,6 @@ class App extends Component {
     this.onSubmitItem = this.onSubmitItem.bind(this);
   }
   render() {
-    console.log(this.state.mode);
     if(this.state.mode === 'display')
     {
       return (
@@ -57,11 +57,10 @@ class App extends Component {
       <div className="new-item-form">
         <p>Enter New Quote</p>
         <form onSubmit={this.onSubmitItem}>
-          <input type="text" placeholder="Person" onChange={this.onPersonChange} required/>
+          <input type="text" placeholder="Person" autoFocus="autofocus" onChange={this.onPersonChange} required/>
           <input type="date" placeholder="Date" value={newItem.date} onChange={this.onDateChange} required />
           <input type="text" placeholder="Quote"
-              onChange={this.onTextChange}  required
-              /*onChange={newItemChanged('text')} <== not ideal*/ />
+              onChange={this.onTextChange}  required/>
 
           <button type="submit">Submit</button>
         </form>
@@ -94,7 +93,7 @@ class App extends Component {
       mode: 'display',
       items: [
        ...this.state.items,
-       this.state.newItem
+       Object.assign(this.state.newItem, { id: Guid.raw() })
       ],
       newItem: newItem  // from let newItem = {...
     });
@@ -107,7 +106,7 @@ class App extends Component {
 // inherits from Component
 function ListItem(item) {
   return (
-    <li className="item">
+    <li className="item" key={item.id}>
       <div className="item-text">
         &quot;{item.text}&quot;
       </div>
