@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Guid from 'guid'
 import logo from './logo.svg';
+import ListItem from './components/ListItem'
 import './App.css';
 // import itemsStore from './stores/ItemsStore'
 
@@ -25,9 +26,6 @@ class App extends Component {
     //itemsStore.subscribe(function(items) {
     //    this.setState({items: items})  
     //})
-    // This is needed in order to pass in 'this' (meaning an instance
-    // of 'App' into scope for the function 'onAddItem') kind of like 
-    // jQuery.proxy.  'bind' is a javascript native function (es6).
     this.onAddItem = this.onAddItem.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
@@ -98,23 +96,6 @@ class App extends Component {
       newItem: newItem  // from let newItem = {...
     });
   }
-}
-
-// "Pure Component". Contains no state and is simply a template for 
-// what the markup looks like
-// If you needed to maintain state, consider making it a class which
-// inherits from Component
-function ListItem(item) {
-  return (
-    <li className="item" key={item.id}>
-      <div className="item-text">
-        &quot;{item.text}&quot;
-      </div>
-      <div className="item-details">
-        {item.person}, {item.date}
-      </div>
-    </li>
-  )
 }
 
 function Header() {
